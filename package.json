@@ -6,7 +6,7 @@
   "scripts": {
     "ServerStarten": "serve ./src",
     "cypressopen": "cypress open",
-    "cypressrun": "cypress run"
+    "cyrun": "cypress run"
   },
   "repository": {
     "type": "git",
