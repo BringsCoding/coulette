@@ -1,0 +1,26 @@
+{
+  "name": "neucollet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "JavaScript.js",
+  "scripts": {
+    "ServerStarten": "serve ./src",
+    "cypressopen": "cypress open",
+    "cypressrun": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BringsCoding/coulette.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BringsCoding/coulette/issues"
+  },
+  "homepage": "https://github.com/BringsCoding/coulette#readme",
+  "devDependencies": {
+    "cypress": "^8.0.0",
+    "serve": "^12.0.0"
+  }
+}
