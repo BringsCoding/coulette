@@ -3,6 +3,9 @@ console.log("Hello");
 let randomColor = undefined; //Der zuletzt gespeicherte Wert
 let colors = []; //ARRY wird gemacht //!!!WICHTIG!!!///
 let colorToDelet = [];
+let colorToSave = [];
+const storageKey = "colors";
+
 ///FÜR DEN BUTTON /////////////////////
 const generateColorButton = document.querySelector("#generate"); //Nimm den Button
 generateColorButton.addEventListener("click", generateColor); //Auf dem Button soll ein Click event statt finden
@@ -30,11 +33,12 @@ function saveColorToList() {
   const colorToSave = randomColor; //Undefinde
   colors.push(colorToSave); //Aryya//Daten sollen in die Prüfung!//Und werden Gespichert//
   console.log(colors);
-
   //if (colors.includes(randomColor)) //Hast das Aryy schon dies Farbe Gespeichert ?
   //{
   //return;
   //}
+
+  saveColorsToLocalStorage();
 
   updateSaveButtonStatus();
 
@@ -52,11 +56,13 @@ function saveColorToList() {
 
   //--------In der Liste Löschen--------///
   const deleteButton = document.createElement("button"); //Wir erzeugen ein Element
+  deleteButton.id = "deletbutton";
   deleteButton.innerText = "delet me"; //Text auf dem Button
   newListItem.appendChild(deleteButton); //Button wird in der Liste Angezeigt
 
   //---------------Delet Button----------------------------//Data fehlt
   deleteButton.addEventListener("click", deleteColorFromList);
+
   const index = colors.indexOf(colorToDelet);
   if (index > -1) {
     colors.splice(index, -1);
@@ -67,14 +73,13 @@ function saveColorToList() {
   saveButton.disabled = false;
   newListItem.couletteColor = colorToSave;
 
+  console.log(colorToDelet);
   updateSaveButtonStatus();
 }
 
 function deleteColorFromList(MyNameIst) {
   const buttonWasClicked = MyNameIst.target; //Wo wurde geklickt
   buttonWasClicked.parentElement.remove(); //Farbe kann aus element gelöscht werden wegen dem Parameter
-  console.log();
-  console.log(colorToSave);
 }
 
 //-----------Blockiert den SaveButton---------///
@@ -107,3 +112,19 @@ function randomHexColor() {
   return ("#" + red + green + blue).toUpperCase();
 }
 ///////////////////////////////////////////
+
+function saveColorsToLocalStorage() {
+  const jsonColors = JSON.stringify(colors);
+  localStorage.setItem(storageKey, jsonColors);
+}
+
+function readColorsFromLocalStorage() {
+  const storageColors = localStorage.getItem(storageKey);
+  if (storageColors !== null) {
+    const _colors = JSON.parse(storageColors);
+    _colors.forEach((color) => {
+      createColorElementInList(color);
+      colors.push(color);
+    });
+  }
+}
