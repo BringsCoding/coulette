@@ -3,5 +3,10 @@ describe("Teste die APP", () => {
     cy.visit("http://localhost:5000/");
     cy.get("#generate").click();
     cy.get("#save").click();
+    cy.get("#generate").click();
+    cy.get("#save").click();
+    cy.get("#generate").click();
+    cy.get("#save").click();
+    cy.get("#deletbutton").click();
   });
 });
